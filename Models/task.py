@@ -38,4 +38,6 @@ class Task(): #importar banco de dados
         task = cls.query.filter_by(id_task=id_task).first()
         if task:
             return task
-        return None 
+        return None
+
+
