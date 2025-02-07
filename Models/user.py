@@ -33,4 +33,11 @@ class Usuario(): #colocar o banco de dados para receber aqui
             return user
         return None
 
+    def get(self):
+        banco.session.add(self)
+        banco.session.commit()
+
+    def delete(self):
+        banco.session.delete()
+        banco.session.commit()
     
