@@ -16,18 +16,15 @@ class Task(Resource):
             return task.json()
         return {'message': 'task not found'}, 404
 
-    def post(self, id_task):
-        if Task.find_task(id_task):
-            return {f"message": f"task id {id_task} already exixts"}
+    def post(self):
 
-
-        dados = Task.arguments.parse_args()
-        task = Task(id_task, **dados)
+        dados = self.arguments.parse_args()
+        task = Task(**dados)
 
         try:
             task.save_task()
         except:
             return {'message': "an internal error occured trying save task"}, 500
-        return task.json()
+        return task.json(), 201 #created
 
 
