@@ -1,5 +1,5 @@
 from flask_restful import Resource, reqparse
-from Resource import task
+from models import Task, User
 import sqlite3
 
 class Task(Resource):
@@ -10,23 +10,24 @@ class Task(Resource):
     arguments.add_argument('description', type=str, required= True, help= "O campo description não pode ser deixado em branco")
 
     def get(self, id_task):
-        task = Models.Task.find_task(id_task)
+        task = Task.find_task(id_task)
 
         if task:
             return task.json()
         return {'message': 'task not found'}, 404
 
     def post(self, id_task):
-        if Models.Task.find_task(id_task):
+        if Task.find_task(id_task):
             return {f"message": f"task id {id_task} already exixts"}
 
 
         dados = Task.arguments.parse_args()
         task = Task(id_task, **dados)
+
         try:
-            save_task()
+            task.save_task()
         except:
             return {'message': "an internal error occured trying save task"}, 500
         return task.json()
-    
+
 
