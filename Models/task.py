@@ -6,9 +6,9 @@ class Task(): #importar banco de dados
     #colocar como deve ser estruturado o banco de dados
     __tablename__ = "tarefas"
 
-    id_task = banco.Collumn(banco.Integer, primary_key=True)
-    title = banco.Collumn(banco.String(50))
-    description = banco.Collumn(banco.String(500))
+    id_task = banco.Column(banco.Integer, primary_key=True)
+    title = banco.Column(banco.String(50))
+    description = banco.Column(banco.String(500))
 
     #______________________________________________________
 
@@ -30,7 +30,7 @@ class Task(): #importar banco de dados
         banco.session.commit()
 
     def delete_task(self):
-        banco.session.delete()
+        banco.session.delete(self)
         banco.session.commit()
 
     @classmethod

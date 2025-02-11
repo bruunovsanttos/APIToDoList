@@ -13,7 +13,7 @@ class Task(Resource):
         task = Task.find_task(id_task)
 
         if task:
-            return task.json()
+            return task.json(), 200
         return {'message': 'task not found'}, 404
 
     def post(self):
@@ -23,8 +23,9 @@ class Task(Resource):
 
         try:
             task.save_task()
+            return task.json(), 201
         except:
             return {'message': "an internal error occured trying save task"}, 500
-        return task.json(), 201 #created
+
 
 
