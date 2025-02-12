@@ -1,6 +1,7 @@
 from flask import Flask, jsonify
 from flask_restful import Api
 from Resource import task
+from flask_sqlalchemy import SQLAlchemy
 import os
 
 base_dir = os.path.dirname(os.path.abspath(__file__))
@@ -10,6 +11,7 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{database_path}'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 api = Api(app)
+banco = SQLAlchemy(app)
 
 api.add_resource(task, '/tasks')
 

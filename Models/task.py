@@ -1,4 +1,5 @@
-from sqlalchemy import banco
+from flask_sqlalchemy import SQLAlchemy
+banco = SQLAlchemy()
 #aqui eu crio o modelo de task
 #serão necerrios ID, titulo e descrição
 
