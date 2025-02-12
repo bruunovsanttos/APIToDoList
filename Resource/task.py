@@ -1,5 +1,5 @@
 from flask_restful import Resource, reqparse
-from models import Task, User
+from Models import Task, User
 import sqlite3
 
 class Task(Resource):

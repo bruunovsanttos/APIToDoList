@@ -2,8 +2,7 @@ from sqlalchemy import banco
 #aqui eu crio o modelo de task
 #serão necerrios ID, titulo e descrição
 
-class Task(): #importar banco de dados
-    #colocar como deve ser estruturado o banco de dados
+class Task(banco.Model):
     __tablename__ = "tarefas"
 
     id_task = banco.Column(banco.Integer, primary_key=True)

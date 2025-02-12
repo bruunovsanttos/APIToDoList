@@ -2,7 +2,7 @@ from sqlalchemy import banco
 #modelo de usuario.
 #usuario necessita de nome, email, senha
 
-class Usuario(): #colocar o banco de dados para receber aqui
+class Usuario(banco.Model): #colocar o banco de dados para receber aqui
     # aqui vai ficar o modelo de banco de dados do usuario
     __tablename__ = "user"
 

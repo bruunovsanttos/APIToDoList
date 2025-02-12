@@ -6,7 +6,7 @@ import os
 base_dir = os.path.dirname(os.path.abspath(__file__))
 database_path = os.path.join(base_dir, "banco.db")
 
-app = Flask(app)
+app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{database_path}'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 api = Api(app)
