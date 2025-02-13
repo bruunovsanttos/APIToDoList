@@ -1,5 +1,4 @@
-from flask_sqlalchemy import SQLAlchemy
-from app import banco
+from extensions import banco
 #usuario necessita de nome, email, senha
 
 class Usuario(banco.Model): #colocar o banco de dados para receber aqui
