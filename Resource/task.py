@@ -2,7 +2,7 @@ from flask_restful import Resource, reqparse
 from Models.task import Task
 import sqlite3
 
-class Task(Resource):
+class TaskResource(Resource):
 
     #utilizando para manter a consistencia de entrada de variaveis
     arguments = reqparse.RequestParser()
@@ -11,7 +11,6 @@ class Task(Resource):
 
     def get(self, id_task):
         task = Task.find_task(id_task)
-
         if task:
             return task.json(), 200
         return {'message': 'task not found'}, 404

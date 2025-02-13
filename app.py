@@ -1,6 +1,6 @@
 from flask import Flask, jsonify
 from flask_restful import Api
-from Resource.task import Task
+from Resource.task import TaskResource
 from extensions import banco
 import os
 
@@ -12,7 +12,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{database_path}'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 api = Api(app)
 
-api.add_resource(Task, '/tasks')
+api.add_resource(TaskResource, '/tasks<int:id_task>')
 
 
 if __name__ == '__main__':

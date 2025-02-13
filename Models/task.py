@@ -12,8 +12,8 @@ class Task(banco.Model):
     #______________________________________________________
 
 
-    def __init__(self, id_task, title, description):
-        self.id_task = id_task
+    def __init__(self, title, description):
+
         self.title = title
         self.description = description
 
