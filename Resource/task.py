@@ -35,5 +35,9 @@ class TaskResource(Resource):
         except:
             return {'message': "an internal error occured trying save task"}, 500
 
+    def put(self, id_task):
+        pass
 
+    def delete(self, id_task):
+        pass
 
