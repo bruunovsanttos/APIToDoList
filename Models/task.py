@@ -30,8 +30,9 @@ class Task(banco.Model):
     @classmethod
     def delete_task(cls, id_task):
         task = cls.find_task(id_task)
-        banco.session.delete(task)
-        banco.session.commit()
+        if task:
+            banco.session.delete(task)
+            banco.session.commit()
 
     @classmethod
     def find_task(cls, id_task):
