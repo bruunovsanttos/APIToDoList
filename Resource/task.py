@@ -39,5 +39,10 @@ class TaskResource(Resource):
         pass
 
     def delete(self, id_task):
-        pass
+        task = Task.find_task(id_task)
+
+        if task:
+            Task.delete_task(id_task)
+            return {'message': f"task {id_task} deleted succeful"}, 200
+        return{'message': f"An internal error occured and task is not deleted"}
 

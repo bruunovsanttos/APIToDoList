@@ -28,8 +28,8 @@ class Task(banco.Model):
         banco.session.add(self)
         banco.session.commit()
 
-    def delete_task(self):
-        banco.session.delete(self)
+    def delete_task(self, id_task):
+        banco.session.delete(id_task)
         banco.session.commit()
 
     @classmethod
