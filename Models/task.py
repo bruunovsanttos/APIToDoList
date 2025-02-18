@@ -27,6 +27,11 @@ class Task(banco.Model):
     def save_task(self):
         banco.session.add(self)
         banco.session.commit()
+
+    def update_task(self, title, description):
+        self.title = title
+        self.description = description
+
     @classmethod
     def delete_task(cls, id_task):
         task = cls.find_task(id_task)

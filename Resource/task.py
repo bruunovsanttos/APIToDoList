@@ -36,7 +36,23 @@ class TaskResource(Resource):
             return {'message': "an internal error occured trying save task"}, 500
 
     def put(self, id_task):
-        pass
+        dados = TaskResource.arguments.parse_args()
+
+        task = Task.find_task(id_task)
+
+        if task:
+            task.update_task(**dados)
+            task.save_task()
+            return task.json(), 200
+        task = Task(id_task, **dados)
+        try:
+            task.save_task(), 200
+        except:
+            {'message': 'An internal error occu rred trying save post'}, 500
+
+        return task.json(), 201
+
+
 
     def delete(self, id_task):
         task = Task.find_task(id_task)
