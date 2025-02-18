@@ -44,7 +44,7 @@ class TaskResource(Resource):
             task.update_task(**dados)
             task.save_task()
             return task.json(), 200
-        task = Task(id_task, **dados)
+        task = Task(**dados) #remover id task pois é gerado automaticamente pelo banco. 
         try:
             task.save_task(), 200
         except:
