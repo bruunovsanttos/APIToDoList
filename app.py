@@ -1,6 +1,7 @@
 from flask import Flask, jsonify
 from flask_restful import Api
 from Resource.task import TaskResource
+from Resource.user import UsuarioResource
 from extensions import banco
 import os
 
@@ -13,6 +14,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 api = Api(app)
 
 api.add_resource(TaskResource, '/tasks', '/tasks/<int:id_task>') #dessa forma ele aceita o endpoint para tasks com ou sem id
+api.add_resource(UsuarioResource, '/user')
 
 
 if __name__ == '__main__':

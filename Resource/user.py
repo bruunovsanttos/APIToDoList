@@ -1,6 +1,7 @@
 from flask_restful import Resource, reqparse
 from Models.user import Usuario
 
+
 class UsuarioResource(Resource):
 
     arguments = reqparse.RequestParser()
@@ -10,7 +11,18 @@ class UsuarioResource(Resource):
 
 
     def get(self):
-        pass
+        if id_usuario:
+            user = Usuario.find_user(id_usuario)
+            if user:
+                return user.json(), 200
+            return {'message':'user not found'}
+        else:
+            users = Usuario.query.all()
+            user_list = []
+            for user in users:
+                user_list.append(user.json())
+            return user_list, 200
+        return {'message':'user not found'}
 
     def post(self):
         pass
