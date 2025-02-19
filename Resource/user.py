@@ -11,8 +11,8 @@ class UsuarioResource(Resource):
 
 
     def get(self):
-        if id_usuario:
-            user = Usuario.find_user(id_usuario)
+        if id_user:
+            user = Usuario.find_user(id_user)
             if user:
                 return user.json(), 200
             return {'message':'user not found'}

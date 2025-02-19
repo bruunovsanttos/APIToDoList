@@ -11,8 +11,8 @@ class Usuario(banco.Model): #colocar o banco de dados para receber aqui
     password = banco.Column(banco.String(20))
 
     #_____________________________________________________
-    def __init__(self, id_usuario, name, email, password):
-        self.id_user = id_usuario
+    def __init__(self, id_user, name, email, password):
+        self.id_user = id_user
         self.name = name
         self.email = email
         self.password = password
