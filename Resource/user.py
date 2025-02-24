@@ -10,7 +10,7 @@ class UsuarioResource(Resource):
     arguments.add_argument('password', type=str, required=True, help="Necessario que seja inserida uma senha")
 
 
-    def get(self):
+    def get(self, id_user=None):
         if id_user:
             user = Usuario.find_user(id_user)
             if user:

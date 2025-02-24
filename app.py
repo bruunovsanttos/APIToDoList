@@ -14,7 +14,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 api = Api(app)
 
 api.add_resource(TaskResource, '/tasks', '/tasks/<int:id_task>') #dessa forma ele aceita o endpoint para tasks com ou sem id
-api.add_resource(UsuarioResource, '/user')
+api.add_resource(UsuarioResource, '/user', '/user/<int:id_user>')
 
 
 if __name__ == '__main__':
