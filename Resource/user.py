@@ -25,7 +25,14 @@ class UsuarioResource(Resource):
         return {'message':'user not found'}
 
     def post(self):
-        pass
+        dados = self.arguments.parse_args()
+        user = User(**dados)
+
+        try:
+            user.save_user()
+            return user.json(), 201
+        except:
+            return {'message': "an internal error occured trying save task"}, 500
 
     def put(self):
         pass
