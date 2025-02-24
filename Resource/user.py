@@ -26,7 +26,7 @@ class UsuarioResource(Resource):
 
     def post(self):
         dados = self.arguments.parse_args()
-        user = User(**dados)
+        user = Usuario(**dados)
 
         try:
             user.save_user()

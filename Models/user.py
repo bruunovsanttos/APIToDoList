@@ -11,15 +11,13 @@ class Usuario(banco.Model): #colocar o banco de dados para receber aqui
     password = banco.Column(banco.String(20))
 
     #_____________________________________________________
-    def __init__(self, id_user, name, email, password):
-        self.id_user = id_user
+    def __init__(self, name, email, password):
         self.name = name
         self.email = email
         self.password = password
 
     def json(self):
         return{
-            'id_usuario': self.id_user,
             'name': self.name,
             'email': self.email,
             'password': self.password
@@ -32,7 +30,7 @@ class Usuario(banco.Model): #colocar o banco de dados para receber aqui
             return user
         return None
 
-    def get(self):
+    def save_user(self):
         banco.session.add(self)
         banco.session.commit()
 
