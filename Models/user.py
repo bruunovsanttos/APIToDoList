@@ -17,7 +17,7 @@ class Usuario(banco.Model): #colocar o banco de dados para receber aqui
         self.password = password
 
     def json(self):
-        return{
+        return {
             'name': self.name,
             'email': self.email,
             'password': self.password
