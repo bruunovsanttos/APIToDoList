@@ -26,12 +26,10 @@ class UsuarioResource(Resource):
 
     def post(self):
         dados = self.arguments.parse_args()
-        print(dados)
         user = Usuario(**dados)
 
         try:
             user.save_user()
-            print('usuario salvo com sucesso')
             return user.json(), 201
         except:
             return {'message': "an internal error occured trying save task"}, 500
