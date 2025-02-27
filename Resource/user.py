@@ -42,7 +42,7 @@ class UsuarioResource(Resource):
         if user:
             user.update_user(**dados)
             user.save_user()
-            return user.json, 200
+            return user.json(), 200
         user = Usuario(**dados)
         try:
             user.save_user(), 200
