@@ -40,12 +40,12 @@ class UsuarioResource(Resource):
         user = Usuario.find_user(id_user)
 
         if user:
-            update_user(**dados)
-            save_user()
+            user.update_user(**dados)
+            user.save_user()
             return user.json, 200
         user = Usuario(**dados)
         try:
-            save_user, 200
+            user.save_user(), 200
         except:
             {'message':'An internal error occured trying save user'}, 500
 
