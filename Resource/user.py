@@ -34,8 +34,14 @@ class UsuarioResource(Resource):
         except:
             return {'message': "an internal error occured trying save task"}, 500
 
-    def put(self):
-        pass
+    def put(self, id_user):
+        dados = UsuarioResource.arguments.parse_args()
+
+        user = Usuario.find_user(id_user)
+
+        if user:
+            user =
+
 
     def delete(self, id_usuario):
         pass

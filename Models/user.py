@@ -37,4 +37,8 @@ class Usuario(banco.Model): #colocar o banco de dados para receber aqui
     def delete(self):
         banco.session.delete(self)
         banco.session.commit()
-    
+
+    def update_user(self, name, email, password):
+        self.name = name
+        self.email = email
+        self.password = password
