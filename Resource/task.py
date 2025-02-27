@@ -48,7 +48,7 @@ class TaskResource(Resource):
         try:
             task.save_task(), 200
         except:
-            {'message': 'An internal error occu rred trying save post'}, 500
+            {'message': 'An internal error occurred trying save task'}, 500
 
         return task.json(), 201
 
