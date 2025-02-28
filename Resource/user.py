@@ -51,10 +51,15 @@ class UsuarioResource(Resource):
 
         return user.json(), 201
 
+    def delete(self, id_user):
+
+        user = Usuario.find_user(id_user)
+
+        if user:
+            Usuario.delete_user()
+            return{'message':f'User {user} deleted succeful'}, 200
+        return{'message': f"An internal error occured and user is not deleted"}
 
 
-
-    def delete(self, id_usuario):
-        pass
 
 

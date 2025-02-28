@@ -34,7 +34,7 @@ class Usuario(banco.Model): #colocar o banco de dados para receber aqui
         banco.session.add(self)
         banco.session.commit()
 
-    def delete(self):
+    def delete_user(self):
         banco.session.delete(self)
         banco.session.commit()
 
