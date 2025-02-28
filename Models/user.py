@@ -35,7 +35,7 @@ class Usuario(banco.Model): #colocar o banco de dados para receber aqui
         banco.session.commit()
 
     @classmethod
-    def delete_user(cls,id_user):
+    def delete_user(cls, id_user):
         user = cls.find_user(id_user)
 
         if user:
