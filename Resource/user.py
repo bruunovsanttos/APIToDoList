@@ -57,7 +57,7 @@ class UsuarioResource(Resource):
 
         if user:
             Usuario.delete_user(id_user)
-            return{'message':f'User {user} deleted succeful'}, 200
+            return{'message':f'{user} deleted succeful'}, 200
         return{'message': f"An internal error occured and user is not deleted"}
 
 
