@@ -1,5 +1,7 @@
 from flask_restful import Resource, reqparse
 from Models.user import Usuario
+from flask_jwt_extended import create_access_token, jwt_required, get_jwt
+from blacklist import BLACKLIST
 
 
 class UsuarioResource(Resource):
@@ -61,5 +63,6 @@ class UsuarioResource(Resource):
         return{'message': f"An internal error occured and user is not deleted"}
 
 
+class UserLogin(Resource):
 
 
