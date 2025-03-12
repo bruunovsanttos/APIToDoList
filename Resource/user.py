@@ -65,4 +65,11 @@ class UsuarioResource(Resource):
 
 class UserLogin(Resource):
 
+    arguments = reqparse.RequestParser()
+    arguments.add_argument('email', type=str, required=True, help="Email é obrigatório")
+    arguments.add_argument('senha', type=str, required=True, help="Senha é obrigatório")
+
+
+
+
 
