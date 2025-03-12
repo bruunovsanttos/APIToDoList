@@ -67,7 +67,17 @@ class UserLogin(Resource):
 
     arguments = reqparse.RequestParser()
     arguments.add_argument('email', type=str, required=True, help="Email é obrigatório")
-    arguments.add_argument('senha', type=str, required=True, help="Senha é obrigatório")
+    arguments.add_argument('password', type=str, required=True, help="Senha é obrigatório")
+
+
+    def post(self):
+        dados = self.arguments.parse_args()
+        user = Usuario.query.filter_by(email=dados['email']).first()
+
+        if user and user.password == dados['password']:
+            access_token = create_access_token(identity=user.id_user)
+            return {'token':access_token}, 200
+
 
 
 
