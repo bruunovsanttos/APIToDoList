@@ -74,7 +74,7 @@ class UserLogin(Resource):
         dados = self.arguments.parse_args()
         user = Usuario.query.filter_by(email=dados['email']).first()
 
-        
+
         #--------------------------------------------------------------------
         #nesse ponto verificar como fazer um hash depois de terminar o codigo
         #--------------------------------------------------------------------
@@ -89,7 +89,7 @@ class UserLogin(Resource):
 
             return {'token':access_token}, 200
 
-        return {'message': f'Credenciais de usuario do usuário {user.id_user} incorretas'}, 401
+        return {'message': f'Credenciais de usuario do usuário incorretas'}, 401
 
 
 
