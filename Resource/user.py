@@ -11,7 +11,7 @@ class UsuarioResource(Resource):
     arguments.add_argument('email', type=str, required=True, help= "Necessario que seja inserido um email")
     arguments.add_argument('password', type=str, required=True, help="Necessario que seja inserida uma senha")
 
-
+    @jwt_required()
     def get(self, id_user=None):
         if id_user:
             user = Usuario.find_user(id_user)
@@ -79,8 +79,8 @@ class UserLogin(Resource):
         #nesse ponto verificar como fazer um hash depois de terminar o codigo
         #--------------------------------------------------------------------
 
-        if user and user.password == dados['password']:
-            access_token = create_access_token(identity=user.id_user) #identity=user.id_user armazena a identidade do usuário dentro do token, normalmente o ID do usuário.
+        if user and user.password == dados['password']:  #a identity tem que ser uma string se não da errado como deu nos testes
+            access_token = create_access_token(identity=str (user.id_user)) #identity=user.id_user armazena a identidade do usuário dentro do token, normalmente o ID do usuário.
 
 
             #------------------------------------------------
