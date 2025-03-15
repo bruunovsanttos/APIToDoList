@@ -29,7 +29,7 @@
         @jwt_required()
         def post(self):
             dados = self.arguments.parse_args()
-            user = Usuario(**dados)
+            user = Usuario(name=dados['name'],email=dados['email'], password=dados['password'])#ajuda a fazer hash de senha melhor declarando de modo explicito
 
             try:
                 user.save_user()
@@ -75,19 +75,11 @@
             dados = self.arguments.parse_args()
             user = Usuario.query.filter_by(email=dados['email']).first()
 
-
-            #--------------------------------------------------------------------
-            #nesse ponto verificar como fazer um hash depois de terminar o codigo
-            #--------------------------------------------------------------------
-
-            if user and user.password == dados['password']:
+            if user and user.check_password(dados['password']):#aqui ja esta comparando o hash da senha com a senha
                 access_token = create_access_token(identity=str (user.id_user)) #identity=user.id_user armazena a identidade do usuário dentro do token, normalmente o ID do usuário.
-
-
                 #------------------------------------------------
                 # Verificar como criar um token temporario tambem
                 #------------------------------------------------
-
                 return {'token':access_token}, 200
 
             return {'message': f'Credenciais de usuario do usuário incorretas'}, 401
