@@ -80,7 +80,7 @@ class UserLogin(Resource):
         #--------------------------------------------------------------------
 
         if user and user.password == dados['password']:
-            access_token = create_access_token(identity=user.id_user) #identity=user.id_user armazena a identidade do usuário dentro do token, normalmente o ID do usuário.
+            access_token = create_access_token(identity=str (user.id_user)) #identity=user.id_user armazena a identidade do usuário dentro do token, normalmente o ID do usuário.
 
 
             #------------------------------------------------
@@ -96,7 +96,7 @@ class UserLogout(Resource):
     def post(self):
         jti = get_jwt()["jti"]
         BLACKLIST.add(jti)
-        return{"message":"Successfully logget out"}, 200
+        return {"message":"Successfully logget out"}, 200
 
 
 
