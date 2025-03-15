@@ -15,14 +15,14 @@ class Usuario(banco.Model): #colocar o banco de dados para receber aqui
     def __init__(self, name, email, password):
         self.name = name
         self.email = email
-        self.password = password
+        self.password = self.hash_password(password)
 
     def hash_password(self, password):
-        salt= bcrypt.getsalt()
+        salt= bcrypt.gensalt()
         return bcrypt.hashpw(password.encode('utf-8'),salt).decode("utf-8")
 
     def check_password(self, password):
-        return bcrypt.checkpw(password.encode("utef-8"), self.password.encode("utf-8"))
+        return bcrypt.checkpw(password.encode("utf-8"), self.password.encode("utf-8"))
 
     def json(self):
         return {

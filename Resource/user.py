@@ -26,7 +26,7 @@ class UsuarioResource(Resource):
             return user_list, 200
         return {'message':'user not found'}
 
-    @jwt_required()
+
     def post(self):
         dados = self.arguments.parse_args()
         user = Usuario(name=dados['name'],email=dados['email'], password=dados['password'])#ajuda a fazer hash de senha melhor declarando de modo explicito
