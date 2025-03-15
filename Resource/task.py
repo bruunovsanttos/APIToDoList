@@ -1,6 +1,8 @@
 from flask_restful import Resource, reqparse
 from Models.task import Task
-import sqlite3
+from flask_jwt_extended import jwt_required
+
+
 
 class TaskResource(Resource):
 
@@ -9,6 +11,7 @@ class TaskResource(Resource):
     arguments.add_argument('title', type=str, required= True, help= "O campo title não pode ser deixado em branco.")
     arguments.add_argument('description', type=str, required= True, help= "O campo description não pode ser deixado em branco")
 
+    @jwt_required()
     def get(self, id_task=None):
         if id_task:
             task = Task.find_task(id_task)
@@ -23,7 +26,7 @@ class TaskResource(Resource):
                 task_list.append(task.json()) #adiciona no task_list
             return task_list, 200 #mostra a lista e retorna a requisição
 
-
+    @jwt_required()
     def post(self):
 
         dados = self.arguments.parse_args()
@@ -34,7 +37,7 @@ class TaskResource(Resource):
             return task.json(), 201
         except:
             return {'message': "an internal error occured trying save task"}, 500
-
+    @jwt_required()
     def put(self, id_task):
         dados = TaskResource.arguments.parse_args()
 
@@ -53,7 +56,7 @@ class TaskResource(Resource):
         return task.json(), 201
 
 
-
+    @jwt_required()
     def delete(self, id_task):
         task = Task.find_task(id_task)
 
