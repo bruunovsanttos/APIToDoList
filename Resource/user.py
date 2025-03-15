@@ -91,8 +91,12 @@ class UserLogin(Resource):
 
         return {'message': f'Credenciais de usuario do usuário incorretas'}, 401
 
-
-
+class UserLogout(Resource):
+    @jwt_required()
+    def post(self):
+        jti = get_jwt()["jti"]
+        BLACKLIST.add(jti)
+        return{"message":"Successfully logget out"}, 200
 
 
 
