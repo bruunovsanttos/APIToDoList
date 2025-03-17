@@ -24,7 +24,7 @@ class Task(banco.Model):
         return{
             'id_task': self.id_task,
             'title': self.title,
-            'description': self.description
+            'description': self.description,
             'id_user': self.id_user
         }
 

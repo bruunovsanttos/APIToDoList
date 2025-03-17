@@ -31,9 +31,9 @@ class TaskResource(Resource):
 
     @jwt_required()
     def post(self):
-
+        id_user = get_jwt_identity()
         dados = self.arguments.parse_args()
-        task = Task(**dados)
+        task = Task(title=dados['title'],description=dados['description'], id_user=id_user)
 
         try:
             task.save_task()
