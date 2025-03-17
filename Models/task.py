@@ -8,20 +8,24 @@ class Task(banco.Model):
     id_task = banco.Column(banco.Integer, primary_key=True)
     title = banco.Column(banco.String(50))
     description = banco.Column(banco.String(500))
+    id_user = banco.Column(banco.Integer, banco.ForeignKey('user.id_user'), nullable=False) #chave estrangeira para vincular ao usuario
 
     #______________________________________________________
 
 
-    def __init__(self, title, description):
+    def __init__(self, title, description, id_user):
 
         self.title = title
         self.description = description
+        self.id_user = id_user
+
 
     def json(self):
         return{
             'id_task': self.id_task,
             'title': self.title,
             'description': self.description
+            'id_user': self.id_user
         }
 
     def save_task(self):
@@ -45,5 +49,7 @@ class Task(banco.Model):
         if task:
             return task
         return None
+
+    
 
 
