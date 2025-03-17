@@ -18,7 +18,7 @@ class Usuario(banco.Model): #colocar o banco de dados para receber aqui
         self.password = self.hash_password(password)
 
     def hash_password(self, password):
-        salt= bcrypt.gensalt()
+        salt = bcrypt.gensalt()
         return bcrypt.hashpw(password.encode('utf-8'),salt).decode("utf-8")
 
     def check_password(self, password):
