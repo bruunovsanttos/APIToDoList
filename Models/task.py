@@ -50,6 +50,9 @@ class Task(banco.Model):
             return task
         return None
 
+    @classmethod
+    def find_task_by_user(cls, id_user):
+        return cls.query.filter_by(id_user=id_user).all() #chama todas tasks por usuario
     
 
 
