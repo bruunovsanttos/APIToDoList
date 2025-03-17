@@ -1,6 +1,6 @@
 from flask_restful import Resource, reqparse
 from Models.task import Task
-from flask_jwt_extended import jwt_required
+from flask_jwt_extended import jwt_required, get_jwt_identity
 
 
 
@@ -13,16 +13,19 @@ class TaskResource(Resource):
 
     @jwt_required()
     def get(self, id_task=None):
+
+        id_user = get_jwt_identity() #obtem o id do usuario
+
         if id_task:
             task = Task.find_task(id_task)
-            if task:
+            if task and task.id_user == int(id_user): #verifica de qual usuario é
                 return task.json(), 200
             return {'message': 'task not found'}, 404
         else:
-            tasks = Task.query.all() #chama todas as tasks do banco de dados
+            tasks = Task.find_task_by_user(id_user) #chama todas as tasks do usuario
             task_list = [] #lista para adicionar cada task encontrada.
 
-            for task in tasks: #se tem uma task em task
+            for task in tasks: #se tem uma task em tasks
                 task_list.append(task.json()) #adiciona no task_list
             return task_list, 200 #mostra a lista e retorna a requisição
 
