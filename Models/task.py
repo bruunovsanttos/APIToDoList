@@ -45,10 +45,8 @@ class Task(banco.Model):
 
     @classmethod
     def find_task(cls, id_task):
-        task = cls.query.filter_by(id_task=id_task).first()
-        if task:
-            return task
-        return None
+        return cls.query.filter_by(id_task=id_task).first()
+
 
     @classmethod
     def find_task_by_user(cls, id_user):

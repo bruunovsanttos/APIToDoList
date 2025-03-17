@@ -17,12 +17,16 @@ class TaskResource(Resource):
         id_user = get_jwt_identity() #obtem o id do usuario
 
         if id_task:
-            task = Task.find_task(id_task)
-            if task and task.id_user == int(id_user): #verifica de qual usuario é
+            task = Task.find_task(int(id_task))
+            if task and task.id_user == int(id_user): #verifica de qual usuario é e como estava recebendo string não funcionanva
                 return task.json(), 200
-            return {'message': 'task not found'}, 404
+            return {'message': 'Tarefa não encontrada ou não pertence a este usuário'}, 404
         else:
             tasks = Task.find_task_by_user(id_user) #chama todas as tasks do usuario
+
+            if not tasks:
+                return {'message': "Any tasks for this user"}, 404
+
             task_list = [] #lista para adicionar cada task encontrada.
 
             for task in tasks: #se tem uma task em tasks
