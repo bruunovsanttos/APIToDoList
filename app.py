@@ -1,7 +1,7 @@
 from flask import Flask, jsonify
 from flask_restful import Api
 from Resource.task import TaskResource
-from Resource.user import UsuarioResource, UserLogin
+from Resource.user import UsuarioResource, UserLogin, UserLogout
 from extensions import banco
 import os
 from flask_jwt_extended import JWTManager
@@ -24,6 +24,7 @@ jwt = JWTManager(app)
 api.add_resource(TaskResource, '/tasks', '/tasks/<int:id_task>') #dessa forma ele aceita o endpoint para tasks com ou sem id
 api.add_resource(UsuarioResource, '/user', '/user/<int:id_user>')
 api.add_resource(UserLogin, '/login')
+api.add_resource(UserLogout, '/logout')
 
 
 @jwt.token_in_blocklist_loader
