@@ -73,9 +73,9 @@ class TaskResource(Resource):
         if task:
 
             if task.id_user != get_jwt_identity():
-                return {'message': "Você não tem permissão para atualizar essa tarefa"}, 403
+                return {'message': "Você não tem permissão para deletar essa tarefa"}, 403
 
-            
+
             Task.delete_task(id_task)
             return {'message': f"task {id_task} deleted succeful"}, 204
         return{'message': f"An internal error occured and task is not deleted"}
