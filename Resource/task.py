@@ -10,6 +10,8 @@ class TaskResource(Resource):
     arguments = reqparse.RequestParser()
     arguments.add_argument('title', type=str, required= True, help= "O campo title não pode ser deixado em branco.")
     arguments.add_argument('description', type=str, required= True, help= "O campo description não pode ser deixado em branco")
+    arguments.add_argument('page', type=int, default=1, help="Número da página para paginação")
+    arguments.add_argument('limit', type=int, default=10, help="Número de itens por página")
 
     @jwt_required()
     def get(self, id_task=None):
@@ -21,7 +23,25 @@ class TaskResource(Resource):
                 return task.json(), 200
             return {'message': 'Tarefa não encontrada ou não pertence a este usuário'}, 404
         else:
-            tasks = Task.find_task_by_user(id_user) #chama todas as tasks do usuario
+
+            args = self.arguments.parse_args()
+            title_filter = args['title']
+            description_filter = args['description']
+            page = args['page']
+            limit = args['limit']
+
+            query = Task.query.filter_by(id_user=id_user)
+
+            if title_filter:
+                query = query.filter(Task.title.ilike(f"%{title_filter}%"))
+            if description_filter:
+                query = query.filter(Task.description.ilike(f"%{description_filter}%"))
+
+                # Aplica a paginação
+            tasks_paginated = query.paginate(page, limit, False)  # Pega os resultados paginados
+            tasks = tasks_paginated.items  # Pega as tarefas da página solicitada
+
+            #tasks = Task.find_task_by_user(id_user) #chama todas as tasks do usuario
 
             if not tasks:
                 return {'message': "Any tasks for this user"}, 404
@@ -30,7 +50,7 @@ class TaskResource(Resource):
 
             for task in tasks: #se tem uma task em tasks
                 task_list.append(task.json()) #adiciona no task_list
-            return task_list, 200 #mostra a lista e retorna a requisição
+            return {'data':task_list, 'page':page, 'limit':limit, 'total':tasks_paginated.total}, 200 #mostra a lista e retorna a requisição
 
     @jwt_required()
     def post(self):
