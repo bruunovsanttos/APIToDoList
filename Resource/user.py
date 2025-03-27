@@ -34,12 +34,12 @@ class UsuarioResource(Resource):
         if Usuario.query.filter_by(email=dados['email']).first():
             return {"message": "Email already in use"}, 400
         else:
-                
-        try:
-            user.save_user()
-            return user.json(), 201
-        except:
-            return {'message': "an internal error occured trying save user"}, 500
+
+            try:
+                user.save_user()
+                return user.json(), 201
+            except:
+                return {'message': "an internal error occured trying save user"}, 500
 
     def put(self, id_user):
         dados = UsuarioResource.arguments.parse_args()
