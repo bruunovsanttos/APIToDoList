@@ -50,7 +50,7 @@ class TaskResource(Resource):
 
             for task in tasks: #se tem uma task em tasks
                 task_list.append(task.json()) #adiciona no task_list
-            return {'data':task_list, 'page':page, 'limit':limit, 'total':tasks_paginated.total}, 200 #mostra a lista e retorna a requisição
+            return {'data': task_list, 'page': page, 'limit': limit, 'total': tasks_paginated.total}, 200 #mostra a lista e retorna a requisição
 
     @jwt_required()
     def post(self):

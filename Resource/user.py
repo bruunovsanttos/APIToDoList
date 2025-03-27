@@ -31,6 +31,10 @@ class UsuarioResource(Resource):
         dados = self.arguments.parse_args()
         user = Usuario(name=dados['name'],email=dados['email'], password=dados['password'])#ajuda a fazer hash de senha melhor declarando de modo explicito
 
+        if Usuario.query.filter_by(email=dados['email']).first():
+            return {"message": "Email already in use"}, 400
+        else:
+                
         try:
             user.save_user()
             return user.json(), 201
