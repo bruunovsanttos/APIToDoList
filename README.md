@@ -62,3 +62,17 @@ Caso o arquivo requirements.txt ainda não esteja presente, você pode gerar um 
     bash
 
     pip freeze > requirements.txt
+
+
+## 🔄 Como Usar
+Execute a aplicação:
+
+    bash
+    python app.py
+
+A API estará disponível em:
+
+    http://localhost:5000  
+
+
+Use ferramentas como Postman ou Insomnia para testar as rotas.
