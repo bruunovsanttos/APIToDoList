@@ -1,7 +1,7 @@
-# API de Lista de Tarefas
+# 📝 API de Lista de Tarefas
 Este é um projeto de API RESTful retirado do [Roadmap.sh](https://roadmap.sh/projects/todo-list-api) para gerenciar listas de tarefas, construído usando o Flask e SQLAlchemy. A API permite que os usuários registrem-se, façam login, criem, atualizem, excluam e visualizem tarefas. A autenticação de usuários é feita com JWT (JSON Web Tokens).
 
-## Tecnologias Utilizadas
+## 🚀 Tecnologias Utilizadas
   
 * Python 3
 * Flask
@@ -12,7 +12,7 @@ Este é um projeto de API RESTful retirado do [Roadmap.sh](https://roadmap.sh/pr
 * SQLite (pode ser substituído por outros bancos de dados como PostgreSQL, MySQL, etc.)    
 
 
-## Funcionalidades
+## ✅  Funcionalidades
 * Registro de usuário (POST /register)
 * Login de usuário (POST /login)
 * CRUD para tarefas (GET /tasks, POST /tasks, PUT /tasks/<id>, DELETE /tasks/<id>)
