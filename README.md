@@ -76,3 +76,43 @@ A API estará disponível em:
 
 
 Use ferramentas como Postman ou Insomnia para testar as rotas.
+
+## 🔐 Segurança
+Senhas com hash usando [bcrypt](https://pypi.org/project/bcrypt/)
+
+Autenticação e autorização com [JWT](https://pyjwt.readthedocs.io/en/stable/)
+
+Blacklist de tokens para logout seguro  
+
+## 📁 Organização do Projeto
+    bash
+
+    APIToDoList/
+    ├── app.py                # Arquivo principal
+    ├── models/               # Modelos do banco de dados
+    ├── resources/            # Endpoints da API
+    ├── blacklist.py          # Blacklist de JWTs
+    ├── extensions.py         # Configurações
+    └── requirements.txt      # Dependências
+
+
+## 👨‍💻 Contribuindo
+Contribuições são bem-vindas!
+
+Você pode:
+
+* Abrir uma issue
+
+* Criar um fork
+
+* Enviar um pull request  
+
+
+## 📄 Licença
+Este projeto está sob a licença MIT.
+Veja o arquivo LICENSE para mais detalhes.
+
+## 👤 Autor
+Feito com 💻 e ☕ por Bruno V. Santos
+
+  
