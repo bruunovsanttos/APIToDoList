@@ -19,49 +19,49 @@ Este é um projeto de API RESTful retirado do [Roadmap.sh](https://roadmap.sh/pr
 * Paginação e filtragem de tarefas
 * Autenticação com JWT (JSON Web Token)  
 
-### Requisitos
+### ⚙️Requisitos
 Certifique-se de ter o Python 3.x instalado na sua máquina. Você pode verificar isso executando:
 
     bash
 
     python --version
-    Instalando Dependências  
+    
 
-Clone o repositório:
+## 🧰 Instalação
+
+1. Clone o repositório:
 
     bash
     git clone https://github.com/bruunovsanttos/APIToDoList
     
 
-Crie um ambiente virtual (opcional, mas recomendado):
+2. Crie um ambiente virtual (opcional, mas recomendado):
 
     bash
 
     python -m venv venv
-Para ativar o ambiente virtual:
 
-No Windows:
 
-    bash
+* Windows:  
 
-    venv\Scripts\activate
-No macOS/Linux:
+        bash
+        venv\Scripts\activate  
 
-    bash
-    
-    source venv/bin/activate
-    Instale as dependências:
+* macOS/Linux:    
+
+        bash
+        source venv/bin/activate
+4. Instale as dependências:
 
 Instale todas as dependências necessárias com o comando:
 
     bash
-
     pip install -r requirements.txt
-Caso o arquivo requirements.txt ainda não esteja presente, você pode gerar um com:
 
-    bash
+* Caso o arquivo requirements.txt ainda não esteja presente, você pode gerar um com:
 
-    pip freeze > requirements.txt
+        bash
+        pip freeze > requirements.txt
 
 
 ## 🔄 Como Usar
