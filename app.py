@@ -39,5 +39,3 @@ if __name__ == '__main__':
         banco.create_all()
 
 
-    app.run(debug=True)
-
