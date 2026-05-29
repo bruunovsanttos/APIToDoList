@@ -1,5 +1,5 @@
 from flask_restful import Resource, reqparse
-from Models.task import Task
+from models.task import Task
 from flask_jwt_extended import jwt_required, get_jwt_identity
 
 
