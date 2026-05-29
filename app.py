@@ -37,5 +37,5 @@ if __name__ == '__main__':
     banco.init_app(app)
     with app.app_context():
         banco.create_all()
-
+ven
 
