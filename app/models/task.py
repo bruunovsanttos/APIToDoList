@@ -1,4 +1,4 @@
-from extensions import banco
+from app.extensions import banco
 #aqui eu crio o modelo de task
 #serão necerrios ID, titulo e descrição
 

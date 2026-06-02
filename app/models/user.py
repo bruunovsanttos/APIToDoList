@@ -1,4 +1,4 @@
-from extensions import banco
+from app.extensions import banco
 import bcrypt
 #usuario necessita de nome, email, senha
 
