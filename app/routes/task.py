@@ -7,11 +7,16 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 class TaskResource(Resource):
 
     #utilizando para manter a consistencia de entrada de variaveis
-    arguments = reqparse.RequestParser()
-    arguments.add_argument('title', type=str, required= True, help= "O campo title não pode ser deixado em branco.")
-    arguments.add_argument('description', type=str, required= True, help= "O campo description não pode ser deixado em branco")
-    arguments.add_argument('page', type=int, default=1, help="Número da página para paginação")
-    arguments.add_argument('limit', type=int, default=10, help="Número de itens por página")
+    task_arguments = reqparse.RequestParser()
+    task_arguments.add_argument('title', type=str, required= True, help= "O campo title não pode ser deixado em branco.")
+    task_arguments.add_argument('description', type=str, required= True, help= "O campo description não pode ser deixado em branco")
+    
+    
+    filter_arguments = reqparse.RequestParser()
+    filter_arguments.add_argument('title', type=str, required=False, location='args')
+    filter_arguments.add_argument('description', type=str, required=False, location='args')
+    filter_arguments.add_argument('page', type=int, default=1, location='args')
+    filter_arguments.add_argument('limit', type=int, default=10, location='args')
 
     @jwt_required()
     def get(self, id_task=None):
@@ -24,7 +29,7 @@ class TaskResource(Resource):
             return {'message': 'Tarefa não encontrada ou não pertence a este usuário'}, 404
         else:
 
-            args = self.arguments.parse_args()
+            args = self.filter_arguments.parse_args()
             title_filter = args['title']
             description_filter = args['description']
             page = args['page']
@@ -38,7 +43,7 @@ class TaskResource(Resource):
                 query = query.filter(Task.description.ilike(f"%{description_filter}%"))
 
                 # Aplica a paginação
-            tasks_paginated = query.paginate(page, limit, False)  # Pega os resultados paginados
+            tasks_paginated = query.paginate(page=page, per_page=limit, error_out=False)  # Pega os resultados paginados
             tasks = tasks_paginated.items  # Pega as tarefas da página solicitada
 
             #tasks = Task.find_task_by_user(id_user) #chama todas as tasks do usuario
@@ -55,7 +60,7 @@ class TaskResource(Resource):
     @jwt_required()
     def post(self):
         id_user = get_jwt_identity()
-        dados = self.arguments.parse_args()
+        dados = self.task_arguments.parse_args()
         task = Task(title=dados['title'],description=dados['description'], id_user=id_user)
 
         try:
@@ -65,7 +70,7 @@ class TaskResource(Resource):
             return {'message': "an internal error occured trying save task"}, 500
     @jwt_required()
     def put(self, id_task):
-        dados = TaskResource.arguments.parse_args()
+        dados = TaskResource.task_arguments.parse_args()
 
         task = Task.find_task(id_task)
 
