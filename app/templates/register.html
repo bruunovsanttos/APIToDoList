@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="PT-BR">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Cadastro - To Do List</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
@@ -13,7 +13,7 @@
             <h1 id="titulo">Faça o seu cadastro de Usuário</h1>
                   
         </div>
-        <form action="/user" method="POST">
+        <form id="register-form">
             <fieldset class="registro">
                 <legend>Preencha as informações para criar seu usuário:</legend>
                 <div class="registro">
@@ -30,7 +30,7 @@
                 </div>
                 <div>
                     <label for="confirm_password"><strong>Confirme sua senha:</strong></label>
-                    <input type="confirm_password" name="confirm_password" id="confirm_passwords" required>
+                    <input type="password" name="confirm_password" id="confirm_password" required>
                 </div>
                 <button type="submit">Confirme seu cadastro</button> <button type="reset">Limpar campos</button>          
             </fieldset>
@@ -48,6 +48,6 @@
 
 
 
-    
+<script src="{{ url_for('static', filename='js/auth.js') }}"></script> 
 </body>
 </html>
