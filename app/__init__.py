@@ -7,6 +7,7 @@ from app.extensions import banco
 from app.blacklist import BLACKLIST
 from app.routes.task import TaskResource
 from app.routes.user import UsuarioResource, UserLogin, UserLogout
+from app.routes.web import web_bp
 
 
 def create_app():
@@ -29,6 +30,8 @@ def create_app():
     api.add_resource(UsuarioResource, "/user", "/user/<int:id_user>")
     api.add_resource(UserLogin, "/login")
     api.add_resource(UserLogout, "/logout")
+
+    app.register_blueprint(web_bp)
 
     @jwt.token_in_blocklist_loader
     def verifica_blacklist(jwt_header, jwt_payload):
