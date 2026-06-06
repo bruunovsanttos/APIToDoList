@@ -17,10 +17,6 @@ h1, h2 {
 #subtitulo {
     text-align: center;
     margin-bottom: 30px;
-}form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
 }
 
 form {
@@ -28,3 +24,68 @@ form {
     flex-direction: column;
     gap: 15px;
 }
+
+fieldset {
+    border: 2px solid black;
+    border-radius: 4px;
+    padding: 25px;
+}
+
+legend {
+    padding: 0 10px;
+    font-weight: bold;
+}
+
+div {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+input, textarea {
+    padding: 10px;
+    border: 1px solid;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+#logout{
+    display: block;
+    margin: 20px auto;
+}
+
+button:hover {
+    background-color: black;
+    color: white;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    color: palegreen;
+}
+
+#cadastro, main > div:last-child {
+    text-align: center;
+    margin-top: 20px;
+}
+
+footer {
+    color: black;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+footer a {
+    color: black;
+    margin-left: 5px;
+}
+
+footer p {
+    margin: 2px;
+    text-align: center;
+}
+
