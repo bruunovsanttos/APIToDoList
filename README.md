@@ -51,9 +51,9 @@ A autenticação é realizada utilizando JWT (JSON Web Token), garantindo que ca
 
 ### Interface Web
 
-* Tela de Login   ![telalogin](image.png)
-* Tela de Cadastro   ![telacadastro](image-1.png)
-* Dashboard para gerenciamento de tarefas  ![dashboard](image-2.png)
+* Tela de Login     ![telalogin](image.png)
+* Tela de Cadastro     ![telacadastro](image-1.png)
+* Dashboard para gerenciamento de tarefas    ![dashboard](image-2.png)
 * Integração completa entre Frontend e Backend
 
 ---
