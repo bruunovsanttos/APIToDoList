@@ -1,118 +1,273 @@
-# 📝 API de Lista de Tarefas
-Este é um projeto de API RESTful retirado do [Roadmap.sh](https://roadmap.sh/projects/todo-list-api) para gerenciar listas de tarefas, construído usando o Flask e SQLAlchemy. A API permite que os usuários registrem-se, façam login, criem, atualizem, excluam e visualizem tarefas. A autenticação de usuários é feita com JWT (JSON Web Tokens).
+# 📝 API ToDo List Fullstack
+
+Este é um projeto Fullstack desenvolvido a partir do desafio da plataforma Roadmap.sh para gerenciamento de tarefas. A aplicação foi construída utilizando Flask no backend e HTML, CSS e JavaScript no frontend, permitindo que usuários realizem cadastro, login e gerenciamento completo de suas tarefas através de uma interface web integrada.
+
+A autenticação é realizada utilizando JWT (JSON Web Token), garantindo que cada usuário tenha acesso apenas às suas próprias tarefas.
+
+---
 
 ## 🚀 Tecnologias Utilizadas
-  
+
+### Backend
+
 * Python 3
 * Flask
 * Flask-RESTful
 * Flask-SQLAlchemy
 * Flask-JWT-Extended
-* bcrypt para hashing de senhas
-* SQLite (pode ser substituído por outros bancos de dados como PostgreSQL, MySQL, etc.)    
+* Bcrypt
+* SQLite
 
+### Frontend
 
-## ✅  Funcionalidades
-* Registro de usuário (POST /register)
-* Login de usuário (POST /login)
-* CRUD para tarefas (GET /tasks, POST /tasks, PUT /tasks/<id>, DELETE /tasks/<id>)
-* Paginação e filtragem de tarefas
-* Autenticação com JWT (JSON Web Token)  
+* HTML5
+* CSS3
+* JavaScript 
 
-### ⚙️Requisitos
-Certifique-se de ter o Python 3.x instalado na sua máquina. Você pode verificar isso executando:
+### Segurança
 
-    bash
+* JWT (JSON Web Token)
+* Hash de senhas com Bcrypt
+* Blacklist de Tokens para Logout Seguro
 
-    python --version
-    
+---
+
+## ✅ Funcionalidades
+
+### Usuários
+
+* Cadastro de usuários
+* Login autenticado com JWT
+* Logout seguro utilizando blacklist de tokens
+
+### Tarefas
+
+* Criar tarefas
+* Visualizar tarefas
+* Editar tarefas
+* Excluir tarefas
+* Filtrar tarefas
+* Paginação de resultados
+
+### Interface Web
+
+* Tela de Login
+* Tela de Cadastro
+* Dashboard para gerenciamento de tarefas
+* Integração completa entre Frontend e Backend
+
+---
+
+## 🖥️ Interface da Aplicação
+
+A aplicação possui uma interface web desenvolvida para facilitar a interação com a API.
+
+Fluxo de utilização:
+
+* Cadastro de usuário
+* Login
+* Criação de tarefas
+* Atualização de tarefas
+* Exclusão de tarefas
+* Logout
+
+---
+
+## ⚙️ Requisitos
+
+Certifique-se de possuir o Python 3 instalado em sua máquina.
+
+Verifique executando:
+
+```bash
+python --version
+```
+
+---
 
 ## 🧰 Instalação
 
-1. Clone o repositório:
+### 1. Clone o repositório
 
-    bash
-    git clone https://github.com/bruunovsanttos/APIToDoList
-    
+```bash
+git clone https://github.com/bruunovsanttos/APIToDoList.git
+```
 
-2. Crie um ambiente virtual (opcional, mas recomendado):
+### 2. Acesse a pasta do projeto
 
-    bash
+```bash
+cd APIToDoList
+```
 
-    python -m venv venv
+### 3. Crie um ambiente virtual
 
+```bash
+python -m venv venv
+```
 
-* Windows:  
+### Ative o ambiente virtual
 
-        bash
-        venv\Scripts\activate  
+#### Windows
 
-* macOS/Linux:    
+```bash
+venv\Scripts\activate
+```
 
-        bash
-        source venv/bin/activate
-4. Instale as dependências:
+#### Linux / macOS
 
-Instale todas as dependências necessárias com o comando:
+```bash
+source venv/bin/activate
+```
 
-    bash
-    pip install -r requirements.txt
+### 4. Instale as dependências
 
-* Caso o arquivo requirements.txt ainda não esteja presente, você pode gerar um com:
+```bash
+pip install -r requirements.txt
+```
 
-        bash
-        pip freeze > requirements.txt
+Caso necessário, gere novamente o arquivo requirements:
 
+```bash
+pip freeze > requirements.txt
+```
 
-## 🔄 Como Usar
-Execute a aplicação:
+---
 
-    bash
-    python app.py
+## 🔄 Como Executar
 
-A API estará disponível em:
+Inicie a aplicação com:
 
-    http://localhost:5000  
+```bash
+python run.py
+```
 
+A aplicação estará disponível em:
 
-Use ferramentas como Postman ou Insomnia para testar as rotas.
+```text
+http://127.0.0.1:5000
+```
+
+---
+
+## 🌐 Rotas Principais
+
+### Interface Web
+
+| Rota       | Descrição        |
+| ---------- | ---------------- |
+| /          | Tela de Login    |
+| /register  | Tela de Cadastro |
+| /dashboard | Dashboard        |
+
+### API
+
+| Método | Endpoint    | Descrição           |
+| ------ | ----------- | ------------------- |
+| POST   | /user       | Cadastro de usuário |
+| POST   | /login      | Login               |
+| POST   | /logout     | Logout              |
+| GET    | /tasks      | Listar tarefas      |
+| POST   | /tasks      | Criar tarefa        |
+| PUT    | /tasks/<id> | Atualizar tarefa    |
+| DELETE | /tasks/<id> | Excluir tarefa      |
+
+---
 
 ## 🔐 Segurança
-Senhas com hash usando [bcrypt](https://pypi.org/project/bcrypt/)
 
-Autenticação e autorização com [JWT](https://pyjwt.readthedocs.io/en/stable/)
+* Senhas armazenadas utilizando hash com Bcrypt
+* Autenticação baseada em JWT
+* Proteção de rotas com `@jwt_required`
+* Controle de acesso por usuário
+* Blacklist de tokens para logout seguro
 
-Blacklist de tokens para logout seguro  
+---
 
 ## 📁 Organização do Projeto
-    bash
 
-    APIToDoList/
-    ├── app.py                # Arquivo principal
-    ├── models/               # Modelos do banco de dados
-    ├── resources/            # Endpoints da API
-    ├── blacklist.py          # Blacklist de JWTs
-    ├── extensions.py         # Configurações
-    └── requirements.txt      # Dependências
+```text
+APIToDoList/
+│
+├── app/
+│   ├── models/
+│   │   ├── task.py
+│   │   └── user.py
+│   │
+│   ├── routes/
+│   │   ├── task.py
+│   │   ├── user.py
+│   │   └── web.py
+│   │
+│   ├── services/
+│   │
+│   ├── templates/
+│   │   ├── login.html
+│   │   ├── register.html
+│   │   └── dashboard.html
+│   │
+│   ├── static/
+│   │   ├── css/
+│   │   └── js/
+│   │
+│   ├── extensions.py
+│   └── blacklist.py
+│
+├── banco.db
+├── run.py
+├── requirements.txt
+└── README.md
+```
 
+---
+
+## 📌 Status do Projeto
+
+✅ Versão 1.0 concluída
+
+Funcionalidades implementadas:
+
+* CRUD completo de tarefas
+* Autenticação JWT
+* Interface Web
+* Integração Frontend e Backend
+* Controle de acesso por usuário
+* Arquitetura organizada utilizando Factory Pattern
+
+---
+
+## 🚀 Melhorias Futuras
+
+* Refresh Token
+* Recuperação de senha
+* Docker
+* Deploy automatizado
+* Testes automatizados
+* Integração com PostgreSQL
+* Melhorias de UX/UI
+
+---
 
 ## 👨‍💻 Contribuindo
-Contribuições são bem-vindas!
+
+Contribuições são bem-vindas.
 
 Você pode:
 
-* Abrir uma issue
+* Abrir uma Issue
+* Criar um Fork
+* Enviar um Pull Request
 
-* Criar um fork
-
-* Enviar um pull request  
-
+---
 
 ## 📄 Licença
-Este projeto está sob a licença MIT.
-Veja o arquivo LICENSE para mais detalhes.
+
+Este projeto está licenciado sob a licença MIT.
+
+---
 
 ## 👤 Autor
-Feito com 💻 e ☕ por Bruno V. Santos
 
-  
+Feito com 💻 e ☕ por Bruno Vieira Santos
+
+🔗 LinkedIn:
+https://www.linkedin.com/in/brunovieirasantos/
