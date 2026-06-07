@@ -3,6 +3,8 @@ const taskForm = document.getElementById("task-form");
 const tasksList = document.getElementById("tasks-list");
 const logoutButton = document.getElementById("logout");
 
+let editingTaskId = null;
+
 if (!token) {
     window.location.href = "/";
 }
@@ -46,7 +48,19 @@ async function carregarTarefas() {
             <h3>${task.title}</h3>
             <p>${task.description}</p>
 
-            <button type="button" class="delete-task" data-id="${task.id_task}">
+            <button
+                type="button"
+                class="edit-task"
+                data-id="${task.id_task}"
+                data-title="${task.title}"
+                data-description="${task.description}">
+                Editar
+            </button>
+
+            <button
+                type="button"
+                class="delete-task"
+                data-id="${task.id_task}">
                 Excluir
             </button>
         `;
@@ -54,10 +68,26 @@ async function carregarTarefas() {
         tasksList.appendChild(taskItem);
     });
 
+    const editButtons = document.querySelectorAll(".edit-task");
+
+    editButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
+
+            editingTaskId = button.getAttribute("data-id");
+
+            document.getElementById("title").value =
+                button.getAttribute("data-title");
+
+            document.getElementById("description").value =
+                button.getAttribute("data-description");
+        });
+    });
+
     const deleteButtons = document.querySelectorAll(".delete-task");
 
     deleteButtons.forEach(function (button) {
         button.addEventListener("click", async function () {
+
             const taskId = button.getAttribute("data-id");
 
             const response = await fetch(`/tasks/${taskId}`, {
@@ -83,8 +113,16 @@ if (taskForm) {
         const title = document.getElementById("title").value;
         const description = document.getElementById("description").value;
 
-        const response = await fetch("/tasks", {
-            method: "POST",
+        const url = editingTaskId
+            ? `/tasks/${editingTaskId}`
+            : "/tasks";
+
+        const method = editingTaskId
+            ? "PUT"
+            : "POST";
+
+        const response = await fetch(url, {
+            method: method,
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${token}`
@@ -96,10 +134,15 @@ if (taskForm) {
         });
 
         if (response.ok) {
+
             taskForm.reset();
-            carregarTarefas();
+
+            editingTaskId = null;
+
+            await carregarTarefas();
+
         } else {
-            alert("Erro ao criar tarefa.");
+            alert("Erro ao salvar tarefa.");
         }
     });
 }
