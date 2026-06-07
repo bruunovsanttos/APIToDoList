@@ -34,7 +34,7 @@ async function carregarTarefas() {
 
     tasksList.innerHTML = "";
 
-    if (!response.ok) {
+    if (!response.ok || data.data.length === 0) {
         tasksList.innerHTML = "<p>Nenhuma tarefa encontrada.</p>";
         return;
     }
@@ -45,9 +45,34 @@ async function carregarTarefas() {
         taskItem.innerHTML = `
             <h3>${task.title}</h3>
             <p>${task.description}</p>
+
+            <button type="button" class="delete-task" data-id="${task.id_task}">
+                Excluir
+            </button>
         `;
 
         tasksList.appendChild(taskItem);
+    });
+
+    const deleteButtons = document.querySelectorAll(".delete-task");
+
+    deleteButtons.forEach(function (button) {
+        button.addEventListener("click", async function () {
+            const taskId = button.getAttribute("data-id");
+
+            const response = await fetch(`/tasks/${taskId}`, {
+                method: "DELETE",
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            });
+
+            if (response.ok) {
+                await carregarTarefas();
+            } else {
+                alert("Erro ao excluir tarefa.");
+            }
+        });
     });
 }
 

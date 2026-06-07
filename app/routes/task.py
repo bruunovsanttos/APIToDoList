@@ -49,7 +49,7 @@ class TaskResource(Resource):
             #tasks = Task.find_task_by_user(id_user) #chama todas as tasks do usuario
 
             if not tasks:
-                return {'message': "Any tasks for this user"}, 404
+                return {'data': [],'page': page, 'limit': limit,'total': 0}, 200
 
             task_list = [] #lista para adicionar cada task encontrada.
 
@@ -76,7 +76,7 @@ class TaskResource(Resource):
 
         if task:
 
-            if task.id_user != get_jwt_identity():
+            if task.id_user != int(get_jwt_identity()):
                 return {'message': "Você não tem permissão para atualizar essa tarefa"}, 403
 
             task.update_task(**dados)
@@ -97,11 +97,11 @@ class TaskResource(Resource):
 
         if task:
 
-            if task.id_user != get_jwt_identity():
+            if task.id_user != int(get_jwt_identity()):
                 return {'message': "Você não tem permissão para deletar essa tarefa"}, 403
 
 
             Task.delete_task(id_task)
             return {'message': f"task {id_task} deleted succeful"}, 204
-        return{'message': f"An internal error occured and task is not deleted"}
+        return{'message': "Tarefa não encontrada"}, 404
 
